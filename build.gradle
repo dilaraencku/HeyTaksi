@@ -12,4 +12,10 @@ dependencies {
     compile 'jstl:jstl:1.2'
     compile  'org.hibernate:hibernate-core:4.3.6.Final'
     compile 'mysql:mysql-connector-java:5.1.31'
+	compile group: 'asm', name: 'asm', version: '3.3.1'
+	compile group: 'com.sun.jersey', name: 'jersey-bundle', version: '1.19'
+	compile group: 'org.json', name: 'json', version: '20140107'
+	compile group: 'com.sun.jersey', name: 'jersey-server', version: '1.19'
+	compile group: 'com.sun.jersey', name: 'jersey-core', version: '1.19'
+	compile group: 'com.sun.jersey', name: 'jersey-json', version: '1.19'
 } 
