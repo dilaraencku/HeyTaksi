@@ -13,6 +13,9 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<mapping class="com.ismek.entity.User" />
 		<mapping class="com.ismek.entity.TravelInformation" />
+		<mapping class="com.ismek.entity.ActiveLocationInfo" />
+		<mapping class="com.ismek.entity.TaxiDriver" />
+		<mapping class="com.ismek.entity.TravelSatisfactionInformation" />
 
 	</session-factory>
 </hibernate-configuration>
