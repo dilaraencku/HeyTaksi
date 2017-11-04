@@ -18,8 +18,7 @@ public class UserBean {
 	
 	public String saveUser(){
 		UserDAO userDao = new UserDAO();
-		Integer userId= userDao.getId();
-		User user = new User(userId, name,lastName,email,birthday,password);
+		User user = new User(0, name,lastName,email,birthday,password);
 		userDao.save(user);
 		System.out.println("User successfully saved.");
 		return "output";
