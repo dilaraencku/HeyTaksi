@@ -25,7 +25,7 @@ public class UserDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<User> findAll(){
+	public List<User> findAll(String deneme){
 		return session.createCriteria(User.class).list();
 	}
 }
