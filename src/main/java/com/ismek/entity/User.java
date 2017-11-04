@@ -1,27 +1,59 @@
 package com.ismek.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user")
+@Table(name="TBL_USER")
 public class User {
 	@Id
 	@Column(name="id")
     private int id;
 	@Column(name="name")
 	private String name;
-	@Column(name="age")
-	private Integer age;
+	@Column(name="birthday")
+	private Date birthday;
+	@Column(name="lastName")
+	private String lastName;
 	@Column(name="email")
 	private String email;
+	@Column(name="password")
+	private String password;
 	
-	public User (int id, String name, Integer age) {
+	public User (int id, String name,String lastName,String email,Date birthday,String password) {
 		this.id = id;
 		this.name = name;
-		this.age = age;
+		this.birthday = birthday;
+		this.lastName=lastName;
+		this.email=email;
+		this.password=password;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public int getId() {
 		return id;
@@ -35,12 +67,7 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getAge() {
-		return age;
-	}
-	public void setAge(Integer age) {
-		this.age = age;
-	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -48,3 +75,4 @@ public class User {
 		this.email = email;
 	}
 }
+
