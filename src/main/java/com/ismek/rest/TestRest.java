@@ -2,10 +2,7 @@ package com.ismek.rest;
 
 import java.util.List;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import com.ismek.dao.UserDAO;
@@ -26,6 +23,14 @@ public class TestRest {
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public List<User> findAllUser(){
 		return new UserDAO().findAll();
+	}
+
+	@GET
+	@Path("/{userId}")
+	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+	public User findOneUser(@PathParam("userId") long id){
+		return new UserDAO().findUserbyId(id);
 	}
 
 }
