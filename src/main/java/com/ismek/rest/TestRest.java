@@ -61,5 +61,18 @@ public class TestRest {
         }
     }
 
-
+    @GET
+    @Path("/login")
+    @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    public boolean login(@QueryParam("username") String username,
+                         @QueryParam("password") String password) {
+        boolean result = false;
+        try {
+            result = userDAO.login(username, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

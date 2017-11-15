@@ -50,7 +50,7 @@ public class UserDAO {
         return;
     }
 
-    public void updateUser(User user){
+    public void updateUser(User user) {
         try {
             session.beginTransaction();
             session.update(user);
@@ -61,5 +61,15 @@ public class UserDAO {
             session.close();
         }
         return;
+    }
+
+    public boolean login(String username, String password) {
+        User user = (User) session.createQuery("from User where name=:name and password=:password").
+                setParameter("name", username).setParameter("password", password).uniqueResult();
+        if (user != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
