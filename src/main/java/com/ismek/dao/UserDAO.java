@@ -49,4 +49,17 @@ public class UserDAO {
         }
         return;
     }
+
+    public void updateUser(User user){
+        try {
+            session.beginTransaction();
+            session.update(user);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return;
+    }
 }

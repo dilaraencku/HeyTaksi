@@ -48,4 +48,18 @@ public class TestRest {
         }
     }
 
+    @PUT
+    @Path("/{userId}")
+    @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    public void updateUser(@PathParam("userId") long id, User user) {
+        try {
+            user.setId(id);
+            userDAO.updateUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
