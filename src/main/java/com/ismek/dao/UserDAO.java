@@ -35,4 +35,18 @@ public class UserDAO {
         return (User) session.createQuery("from User where id=:id").
                 setParameter("id", userId).uniqueResult();
     }
+
+    public void deleteUser(long userId) {
+        try {
+            session.beginTransaction();
+            session.createQuery("delete from User where id =:id").setParameter("id", userId).
+                    executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return;
+    }
 }
