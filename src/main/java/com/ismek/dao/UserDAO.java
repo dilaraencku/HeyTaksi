@@ -7,6 +7,7 @@ import org.hibernate.Session;
 
 import com.ismek.entity.User;
 import com.ismek.util.HibernateUtil;
+import org.hibernate.annotations.SourceType;
 
 public class UserDAO {
     Session session = HibernateUtil.getSessionFactory().openSession();
@@ -38,12 +39,15 @@ public class UserDAO {
 
     public void deleteUser(long userId) {
         try {
-            session.beginTransaction();
+            session.getTransaction().begin();
             session.createQuery("delete from User where id =:id").setParameter("id", userId).
                     executeUpdate();
             session.getTransaction().commit();
+            System.out.println("Deleted the User Successfully");
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Failed on Deleting the User");
+            session.getTransaction().rollback();
         } finally {
             session.close();
         }
@@ -52,11 +56,14 @@ public class UserDAO {
 
     public void updateUser(User user) {
         try {
-            session.beginTransaction();
+            session.getTransaction().begin();
             session.update(user);
             session.getTransaction().commit();
+            System.out.println("Updated the User Successfully");
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Failed on Updating the User");
+            session.getTransaction().rollback();
         } finally {
             session.close();
         }
