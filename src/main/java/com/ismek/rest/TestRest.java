@@ -6,6 +6,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import com.ismek.dao.UserDAO;
+import com.ismek.dto.BaseReturn;
+import com.ismek.dto.UserLoginDTO;
 import com.ismek.entity.User;
 
 @Path("/TestRest")
@@ -61,18 +63,26 @@ public class TestRest {
         }
     }
 
-    @GET
+    @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
     @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-    public boolean login(@QueryParam("username") String username,
-                         @QueryParam("password") String password) {
-        boolean result = false;
+    public BaseReturn<User> login(UserLoginDTO userDto) {
+    	BaseReturn<User> response = new BaseReturn<>();
         try {
-            result = userDAO.login(username, password);
+            User user = userDAO.login(userDto.getUsername(), userDto.getPassword());
+            if (user == null) {
+				response.setResult(false);
+				response.setMessage("Kullanıcı adı veya şifre yanlış!");
+			}else{
+				response.setResult(true);
+				response.setData(user);
+			}
         } catch (Exception e) {
             e.printStackTrace();
+            response.setResult(false);
+			response.setMessage(e.getMessage());
         }
-        return result;
+        return response;
     }
 }

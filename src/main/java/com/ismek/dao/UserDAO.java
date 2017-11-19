@@ -2,12 +2,17 @@ package com.ismek.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.ismek.entity.User;
 import com.ismek.util.HibernateUtil;
+import com.ismek.util.SessionUtil;
+
 import org.hibernate.annotations.SourceType;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 
 public class UserDAO {
     Session session = HibernateUtil.getSessionFactory().openSession();
@@ -70,13 +75,25 @@ public class UserDAO {
         return;
     }
 
-    public boolean login(String username, String password) {
-        User user = (User) session.createQuery("from User where name=:name and password=:password").
-                setParameter("name", username).setParameter("password", password).uniqueResult();
-        if (user != null) {
-            return true;
-        } else {
-            return false;
-        }
+    public User login(String username, String password) {
+    	User user = null;
+    	Session session = SessionUtil.getInstance();
+    	Criteria criteria = session.createCriteria(User.class);
+    	Criterion crUsername = Restrictions.eq("email", username);
+    	Criterion crPassword = Restrictions.eq("password", password);
+    	criteria.add(crUsername);
+    	criteria.add(crPassword);
+    	List<User> users = criteria.list();
+    	if (users != null && users.size() > 0) {
+			user = users.get(0);
+		}
+    	return user;
+//        User user = (User) session.createQuery("from User where name=:name and password=:password").
+//                setParameter("name", username).setParameter("password", password).uniqueResult();
+//        if (user != null) {
+//            return true;
+//        } else {
+//            return false;
+//        }
     }
 }
