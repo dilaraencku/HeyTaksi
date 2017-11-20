@@ -1,12 +1,10 @@
 package com.ismek.entity;
+import com.ismek.util.DateAndTimeDeserialize;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TBL_ACTIVELOCATIONINFO")
@@ -22,6 +20,7 @@ public class ActiveLocationInfo {
 	@Column(name = "latitude") 	// enlem
 	private double latitude;
 	@Column(name = "cdate") 	// konum olusma tarihi
+    @JsonDeserialize(using=DateAndTimeDeserialize.class)
 	private Date cdate;
 	public long getId() {
 		return id;
