@@ -14,22 +14,27 @@ import javax.persistence.Table;
 
 public class TravelSatisfactionInformation {
 	@Id
-	@Column(name="travelId")
+	@Column(name="id")
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	private long travelId; 
-	@Column (name="taxiDriverId")
+	private long id; 
+	
+	@Column (name="taxi_driver_id")
 	private long taxiDriverId;
-	@Column (name="customerId")
+	
+	@Column (name="customer_Id")
 	private long customerId;
-	@Column (name="travelComment")
+	
+	@Column (name="travel_Comment")
 	private String travelComment;
-	@Column (name="travelDate")
+	
+	@Column (name="travel_rate")
 	private Date travelDate;
-	@Column(name="starRating")
+	
+	@Column(name="star_rating")
 	private String starRating;
 	
-	public TravelSatisfactionInformation(long travelId,long taxiDriverId,long customerId,String travelComment,Date travelDate,String starRating) {
-	this.travelId=travelId;
+	public TravelSatisfactionInformation(long id,long taxiDriverId,long customerId,String travelComment,Date travelDate,String starRating) {
+	this.id=id;
 	this.taxiDriverId=taxiDriverId;
 	this.customerId=customerId;
 	this.travelComment=travelComment;
@@ -39,14 +44,14 @@ public class TravelSatisfactionInformation {
 	}
 	
 	
-	public double getTravelId() {
-		return travelId;
+	public double getId() {
+		return id;
 	}
 	
-	public long getTaxidriverid() {
+	public long getTaxiDriverId() {
 		return taxiDriverId;
 	}
-	public void setTaxidriverid(long taxiDriverId) {
+	public void setTaxiDriverId(long taxiDriverId) {
 		this.taxiDriverId = taxiDriverId;
 	}
 	public long getCustomerId() {
@@ -55,8 +60,8 @@ public class TravelSatisfactionInformation {
 	public void setCustomerId(long customerId) {
 		this.customerId = customerId;
 	}
-	public void setTravelId(long travelId) {
-		this.travelId = travelId;
+	public void setId(long id) {
+		this.id=id;
 	}
 	public String getTravelComment() {
 		return travelComment;
@@ -76,6 +81,5 @@ public class TravelSatisfactionInformation {
 	public void setStarRating(String starRating) {
 		this.starRating = starRating;
 	}
-	
 	
 }
