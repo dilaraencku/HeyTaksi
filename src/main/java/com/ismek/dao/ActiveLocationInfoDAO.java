@@ -1,17 +1,12 @@
 package com.ismek.dao;
 
-import com.ismek.entity.ActiveLocationInfo;
-import com.ismek.entity.User;
-import com.ismek.util.DateUtil;
-import com.ismek.util.HibernateUtil;
-import com.sun.org.apache.regexp.internal.RE;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
+import com.ismek.entity.ActiveLocationInfo;
+import com.ismek.util.HibernateUtil;
 
 /**
  * Created by İhsan on 11/20/2017.
